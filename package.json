@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@aws-sdk/client-sns": "^3.47.0",
+    "cors": "^2.8.5",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-form": "^8.3.8",
+    "webpack": "^5.66.0"
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.7.0"
+  }
+}

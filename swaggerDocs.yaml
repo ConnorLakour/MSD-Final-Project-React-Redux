@@ -1,0 +1,114 @@
+swagger: '2.0'
+info:
+  description: This is an express router
+  version: 1.0.0
+  title: Stream Router
+  # put the contact info for your development or API team
+  contact:
+    email: lakour6@gmail.com
+
+
+tags:
+- name: get one
+- name: create one  
+- name: update one
+- name: delete one
+
+
+
+
+paths:
+  /display/:id:
+    get:
+      tags:
+      - get one
+      summary: searches for a stream 
+      description: By passing in the stream id, will find item in a list of streams
+      produces:
+      - object
+      parameters:
+      - in: body
+        description: pass id for finding stream
+        required: true
+        name: id
+      responses:
+        200:
+          description: search results matching criteria
+         
+        404:
+          description: not found
+  /create:  
+    post:
+      tags:
+      - create one
+      summary:  adds a new stream item
+      description: adds an item to the system
+      consumes:
+      - object
+      produces:
+      - string
+      parameters:
+      - in: request body
+        name: StreamModel
+        description: item to add
+      responses:
+        201:
+          description: item created
+        400:
+          description: bad request
+  /edit/:id/:userId:
+    put:
+      tags:
+      - update one
+      summary: edits a stream item
+      description: edits an item in the system
+      consumes:
+      - object
+      produces:
+      - string
+      parameters:
+      - in: request body
+        name: id
+        description: item to edit
+      responses:
+        200:
+          description: item edited
+        400:
+          description: bad request
+  /delete/:id:
+    delete:
+      tags:
+      - delete one
+      summary: deletes an item
+      description: Adds an item to the system
+      consumes:
+      - number
+      produces:
+      - string
+      parameters:
+      - in: body
+        name: id
+        required: true
+        description: item to delete
+      responses:
+        200:
+          description: item delete
+         
+        404:
+          description: not found
+  /show:
+    get:
+     tags:
+     - get all
+     summary: gets all items
+     description: Gets all items in the system
+     consumes:
+     - empty
+     produces:
+     - array of objects
+     responses:
+       200:
+         description: found items
+         
+       400:
+         description: bad request
