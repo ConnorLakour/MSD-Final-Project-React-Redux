@@ -1,3 +1,4 @@
+import _ from 'lodash'
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = {}, action) => {
   switch (action.type) {
@@ -9,7 +10,7 @@ export default (state = {}, action) => {
     case "FETCH_STREAMS":
       return { ...state, [action.payload.id]: action.payload };
     case "DELETE_STREAM":
-      return { ...state };
+      return _.omit(state, action.payload)
     case "EDIT_STREAM":
       return { ...state, [action.payload.id]: action.payload };
     default:
