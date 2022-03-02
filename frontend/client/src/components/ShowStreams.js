@@ -19,7 +19,10 @@ class ShowStreams extends React.Component {
   render() {
     return (
       <div>
-        <StreamList list={this.state.list} userId={this.state.userId} />
+        <StreamList 
+        // list={this.state.list}
+        //  userId={this.state.userId} 
+         />
       </div>
     );
   }

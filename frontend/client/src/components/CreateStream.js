@@ -67,8 +67,13 @@ class CreateStream extends React.Component {
     obj.userId = this.state.userId;
     this.props.createStream(obj);
     this.setState({ ...this.state, redirect: true, email: values.email });
-    this.subscribeToSns();
+    // this.subscribeToSns();
   }
 }
 
-export default connect(null, { createStream })(CreateStream);
+const mapStateToProps = (state) =>{
+  // console.log(state)
+  return {streams: Object.values(state.streams)}
+}
+
+export default connect(mapStateToProps, { createStream })(CreateStream);

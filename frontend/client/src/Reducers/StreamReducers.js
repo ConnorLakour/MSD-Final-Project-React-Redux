@@ -4,7 +4,6 @@ export default (state = {}, action) => {
   switch (action.type) {
     case "CREATE_STREAM":
       //key interpolation       
-      // find the stream id and assign action.payload
       return { ...state, [action.payload.id]: action.payload };
     case "FETCH_STREAM":
       return { ...state, [action.payload.id]: action.payload };
