@@ -17,18 +17,18 @@ import DeleteStream from "./DeleteStream";
 import CreateStream from "./CreateStream";
 import ShowStreamDetail from "./ShowStreamDetail";
 import Header from "./Header";
+import history from '../history'
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [userId, setUserId] = useState("");
 
-  // console.log(isSignedIn)
   console.log(userId)
 
   return (
     <div>
       <div />
-      <BrowserRouter>
+      <Router history={history}>
         <Header
           // setIsSignedIn={setIsSignedIn}
           // isSignedIn={isSignedIn}
@@ -39,10 +39,7 @@ function App() {
         {/* {isSignedIn
           ?  */}
           <div>
-              {/* pass userId obtained from OAuth component 
-            to keep track of the current user's streams
-            *******find a better way of passing userId*****
-            */}
+          
               {/* <Link to={"/stream/create/" + userId}>Create Stream</Link>
               <Link to={"/stream/show/" + userId}>Show All Stream</Link> */}
 
@@ -77,7 +74,7 @@ function App() {
               <Route path="/" exact component={Homepage} />
             </div>
             {/* } */}
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

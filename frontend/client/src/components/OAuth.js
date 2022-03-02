@@ -25,8 +25,8 @@ class OAuth extends React.Component {
           this.autho = window.gapi.auth2.getAuthInstance();
           
            // ^set user id
-          this.props.setUserId(Number(this.autho.currentUser.get().getId()));
-
+          this.props.setUserId(this.autho.currentUser.get().getId());
+          
           //^update autho state in our redux store
           this.onAuthoChange(this.autho.isSignedIn.get());
           // console.log(this.props.isSignedIn)

@@ -1,9 +1,9 @@
 import streams from "../apis/streams";
-
+import history from '../history'
 export const signIn = userId => {
   return {
     type: "SIGN_IN",
-    payload: Number(userId)
+    payload: userId
   };
 };
 export const signOut = () => {
@@ -14,10 +14,16 @@ export const signOut = () => {
 
 export const createStream = formValues =>
   //^using thunk, so return an arrow fcn
-  async disptach => {
-    const response = await streams.post("/stream/create", formValues);
+  //^append userId to object
+  async (disptach, getState) => {
+    const {userId} = getState().autho
+    const response = await streams.post("/stream/create", {...formValues, userId});
 
     disptach({ type: "CREATE_STREAM", payload: response.data });
+
+
+    
+
   };
 
 export const fetchStream = id => async disptach => {

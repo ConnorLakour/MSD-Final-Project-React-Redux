@@ -38,14 +38,14 @@ class CreateStream extends React.Component {
   componentDidMount() {
     //get userId and add it to the redirect url
     // console.log(this.props.match.params)
-    this.setState({ userId: this.props.match.params.userId });
+    // this.setState({ userId: this.props.match.params.userId });
   }
 
   render() {
     return (
       <React.Fragment>
         {this.state.redirect
-          ? <Redirect to={`/stream/show/${this.state.userId}`} />
+          ? <Redirect to={`/stream/show/${this.props.currentUserId}`} />
           : null}
         <h2>Create Stream</h2>
         <StreamForm
@@ -64,11 +64,17 @@ class CreateStream extends React.Component {
    */
   onSubmit(values) {
     const obj = { ...values };
-    obj.userId = this.state.userId;
+    obj.userId = this.props.currentUserId;
     this.props.createStream(obj);
     this.setState({ ...this.state, redirect: true, email: values.email });
-    this.subscribeToSns();
+    // this.subscribeToSns();
   }
 }
 
-export default connect(null, { createStream })(CreateStream);
+const mapStateToProps = (state) =>{
+  // console.log(state)
+  return {streams: Object.values(state.streams),
+          currentUserId: state.autho.userId}
+}
+
+export default connect(mapStateToProps, { createStream })(CreateStream);
