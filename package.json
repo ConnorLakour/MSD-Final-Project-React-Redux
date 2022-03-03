@@ -2,6 +2,7 @@
   "dependencies": {
     "@aws-sdk/client-sns": "^3.47.0",
     "cors": "^2.8.5",
+    "history": "^5.3.0",
     "lodash": "^4.17.21",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",

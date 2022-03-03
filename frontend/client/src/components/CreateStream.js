@@ -44,9 +44,9 @@ class CreateStream extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {this.state.redirect
+        {/* {this.state.redirect
           ? <Redirect to={`/stream/show/${this.props.currentUserId}`} />
-          : null}
+          : null} */}
         <h2>Create Stream</h2>
         <StreamForm
           onSubmit={values => {
@@ -71,10 +71,11 @@ class CreateStream extends React.Component {
   }
 }
 
-const mapStateToProps = (state) =>{
-  // console.log(state)
-  return {streams: Object.values(state.streams),
-          currentUserId: state.autho.userId}
-}
+const mapStateToProps = state => {
+  return {
+    streams: Object.values(state.streams),
+    currentUserId: state.autho.userId
+  };
+};
 
 export default connect(mapStateToProps, { createStream })(CreateStream);

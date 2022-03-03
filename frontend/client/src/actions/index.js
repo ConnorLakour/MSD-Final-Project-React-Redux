@@ -21,7 +21,8 @@ export const createStream = formValues =>
 
     disptach({ type: "CREATE_STREAM", payload: response.data });
 
-
+    //programmatic naviagation
+    history.push(`/stream/show/${userId}`);
     
 
   };

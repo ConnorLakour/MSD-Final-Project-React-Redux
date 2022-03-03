@@ -37,7 +37,7 @@ class StreamList extends React.Component {
           {this.props.currentUserId === stream.userId
             ? <div className="right floated content">
                 <Link
-                  to={`/stream/edit/${stream.id}/${stream.userId}`}
+                  to={`/stream/edit/${stream.id}`}
                   className="ui primary button"
                 >
                   Edit
@@ -45,7 +45,7 @@ class StreamList extends React.Component {
                 <Link
                   onClick={() => this.deleteStream(stream.id)}
                   //want to redirect to delete comp. modal but for now onClick is good enough
-                   to={`/stream/show/${stream.userId}`}
+                   to={`/stream/delete/${stream.id}`}
                   className="ui negative button"
                 >
                   Delete

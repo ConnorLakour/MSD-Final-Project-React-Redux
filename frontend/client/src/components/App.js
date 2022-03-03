@@ -44,12 +44,12 @@ function App() {
               <Link to={"/stream/show/" + userId}>Show All Stream</Link> */}
 
               <Route
-                path="/stream/show/:userId"
+                path="/stream/show"
                 exact
                 component={ShowStreams}
               />
               <Route
-                path="/stream/edit/:id/:userId"
+                path="/stream/edit/:id"
                 exact
                 component={EditStream}
               />
@@ -57,7 +57,7 @@ function App() {
               exact 
               component={DeleteStream} />
               <Route
-                path="/stream/create/:userId"
+                path="/stream/create"
                 exact
                 component={CreateStream}
               />
