@@ -40,7 +40,7 @@ router.post("/create", function(req, res, next) {
 });
 
 //UPDATE one
-router.put("/edit/:id/:userId", async (req, res, next) => {
+router.put("/edit/:id", async (req, res, next) => {
   const id = req.params.id;
   const title = req.body.title;
   const description = req.body.description;

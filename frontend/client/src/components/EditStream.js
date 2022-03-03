@@ -9,9 +9,9 @@ const EditStream = props => {
   useEffect(() => {
     const fetchStream = async () => {
       const streamVideo = await axios.get(
-        "http://localhost:3001/stream/show/" + props.match.params.id
+        "http://localhost:3001/stream/display/" + props.match.params.id
       );
-      // console.log("line 12 " + stream.data)
+       console.log("line 12 " + streamVideo.data)
       setStream(streamVideo.data);
     };
 
@@ -20,7 +20,7 @@ const EditStream = props => {
 
   const onSubmit = values => {
     axios.put(
-      `http://localhost:3001/stream/edit/${props.match.params.id}/${props.match.params.userId}` ,
+      `http://localhost:3001/stream/edit/${props.match.params.id}` ,
       values
       );
       setRedirect(true)
@@ -29,7 +29,7 @@ const EditStream = props => {
  
   return (
     <React.Fragment>
-      {redirect ? <Redirect to={`/stream/show/${props.match.params.userId}`} /> : null}
+      {redirect ? <Redirect to={`/stream/show/`} /> : null}
       <h2>Edit Stream</h2>
       <StreamForm
         //title & desc. props will populate the input fields
