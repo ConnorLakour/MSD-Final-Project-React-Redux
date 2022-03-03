@@ -20,10 +20,9 @@ class StreamList extends React.Component {
 
   renderList() {
     return this.props.streams.map(stream => {
-
       return (
         <div className="item" key={stream.id}>
-          <i className="large middle alligned icon camera"></i>
+          <i className="large middle alligned icon camera" />
           <Link to={`/stream/display/${stream.id}`} className="content">
             {stream.title}
             <div className="description">
@@ -44,8 +43,7 @@ class StreamList extends React.Component {
                 </Link>
                 <Link
                   onClick={() => this.deleteStream(stream.id)}
-                  //want to redirect to delete comp. modal but for now onClick is good enough
-                   to={`/stream/delete/${stream.id}`}
+                  to={`/stream/delete/${stream.id}`}
                   className="ui negative button"
                 >
                   Delete
@@ -79,7 +77,7 @@ class StreamList extends React.Component {
 
 const mapStateToProps = state => {
   //Object.values turns all values into an array
-  return { 
+  return {
     streams: Object.values(state.streams),
     currentUserId: state.autho.userId,
     isSignedIn: state.autho.isSignedIn

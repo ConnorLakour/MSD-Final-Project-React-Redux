@@ -17,6 +17,7 @@ class StreamForm extends React.Component {
   };
 
   render() {
+    // console.log(this.props.initalValues);
     return (
       <div>
         {/* handleSubmit comes from props of redux-forms and then need to pass */}
@@ -30,19 +31,22 @@ class StreamForm extends React.Component {
             name="title"
             component={this.renderInput}
             label="Enter Title"
+            
+            
           />
           <Field
             name="description"
             component={this.renderInput}
             label="Enter Description"
+           
+
           />
           <Field
             name="email"
             component={this.renderInput}
             label="Enter Email"
           />
-          {/* <br /> */}
-
+       
           <button className="ui button primary">Submit</button>
         </form>
       </div>
@@ -53,6 +57,7 @@ class StreamForm extends React.Component {
   /**
    * 
    * @param {*} values coming from user's input
+   * passing values to createStream comp. 
    */
   onSubmit = values => {
     this.props.onSubmit(values);

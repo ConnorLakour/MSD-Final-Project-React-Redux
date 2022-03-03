@@ -18,7 +18,7 @@ const snsClient = new SNSClient({
 });
 
 class CreateStream extends React.Component {
-  state = { userId: "", redirect: false, email: "" };
+  state = {  email: "" };
 
   async subscribeToSns() {
     const params = {
@@ -60,7 +60,7 @@ class CreateStream extends React.Component {
   /**
    * 
    * @param {*} values coming from redux-form
-   * userId coming from OAuth component
+   * u
    */
   onSubmit(values) {
     const obj = { ...values };

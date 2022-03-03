@@ -1,44 +1,43 @@
+import React from "react";
+import { connect } from "react-redux";
+
+import { fetchStream, editStream } from "../actions";
 import StreamForm from "./StreamForm";
-import { Redirect } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 
-const EditStream = props => {
-  const [stream, setStream] = useState("");
-  const [redirect, setRedirect] = useState(false);
-  useEffect(() => {
-    const fetchStream = async () => {
-      const streamVideo = await axios.get(
-        "http://localhost:3001/stream/display/" + props.match.params.id
-      );
-       console.log("line 12 " + streamVideo.data)
-      setStream(streamVideo.data);
-    };
+class EditStream extends React.Component {
+  state = {redirect: false, stream: null}
+  
+  
+  componentDidMount() {
+     this.props.fetchStream(this.props.match.params.id);
 
-    fetchStream();
-  }, []);
+    
+  }
 
-  const onSubmit = values => {
-    axios.put(
-      `http://localhost:3001/stream/edit/${props.match.params.id}` ,
-      values
-      );
-      setRedirect(true)
+   onSubmit = formValues => {
+   const {id, title, description} = formValues;
+   this.props.editStream(id, formValues)
+    // this.setState({redirect:true})
   };
 
- 
-  return (
-    <React.Fragment>
-      {redirect ? <Redirect to={`/stream/show/`} /> : null}
+  render() {
+
+    return (
+      <React.Fragment>
+      {/* {this.state.redirect ? <Redirect to={`/stream/show/`} /> : null} */}
       <h2>Edit Stream</h2>
       <StreamForm
-        //title & desc. props will populate the input fields
-        title={stream ? stream[0].title : ""}
-        description={stream ? stream[0].description : ""}
-        onSubmit={values => onSubmit(values)}
-      />
+        //Field props will first check initialValues
+        initialValues={this.props.streams}
+        onSubmit={values => this.onSubmit(values)}
+        />
     </React.Fragment>
   );
+}
 };
 
-export default EditStream;
+const mapStateToProps = (state, ownProps) => {
+  return {streams: state.streams[ownProps.match.params.id]};
+};
+
+export default connect(mapStateToProps, { fetchStream, editStream })(EditStream);
