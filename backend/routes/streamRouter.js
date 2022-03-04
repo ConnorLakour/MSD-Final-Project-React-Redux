@@ -4,22 +4,20 @@ const StreamModel = require("../Models/SteamModel");
 require("../db/myDB");
 require("mongoose");
 
-//GET all
+//^GET all
 router.get("/show", async function(req, res, next) {
   const streams = await StreamModel.find({});
   res.status(200).send(streams);
 });
-//GET one
-router.get('/display/:id', async function(req, res, next){
-  const stream = await StreamModel.find({id: req.params.id})
-  console.log(stream)
 
+//^GET one
+router.get("/display/:id", async function(req, res, next){
+  const stream = await StreamModel.find({id: req.params.id})
   res.status(200).send(stream)
 })
 
-//CREATE one
+//^CREATE one
 router.post("/create", function(req, res, next) {
-  console.log(req.body)
   const steam = new StreamModel({
     id: Math.floor(Math.random() * 100 + 1),
     title: req.body.title,
@@ -30,7 +28,6 @@ router.post("/create", function(req, res, next) {
   steam
     .save()
     .then(result => {
-      // console.log(result);
       res.status(201).send("Success!");
     })
     .catch(error => {
@@ -39,12 +36,11 @@ router.post("/create", function(req, res, next) {
     });
 });
 
-//UPDATE one
+//^UPDATE one
 router.put("/edit/:id", async (req, res, next) => {
   const id = req.params.id;
   const title = req.body.title;
   const description = req.body.description;
-
    await StreamModel.updateOne(
     { id: id },
     { title: title, description: description }
@@ -52,12 +48,12 @@ router.put("/edit/:id", async (req, res, next) => {
   res.status(200).send('Success');
 });
 
-//DELETE one
+//^DELETE one
 router.delete("/delete/:id", async (req, res, next)=>{
   const id = req.params.id
   const deleted = await StreamModel.deleteOne({id: id})
   console.log(deleted)
-  // res.status(200).send("Success")
+   res.status(200).send("Success")
 })
 
 module.exports = router;

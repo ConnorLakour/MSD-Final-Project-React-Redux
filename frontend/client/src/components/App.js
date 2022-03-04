@@ -1,4 +1,4 @@
-import { Router, Route } from "react-router-dom";
+import { Router, Route, BrowserRouter } from 'react-router-dom';
 import React, { useState } from "react";
 import { createBrowserHistory } from "history";
 
@@ -16,6 +16,7 @@ import Header from "./Header";
 const history = createBrowserHistory();
 
 function App() {
+  console.log(history)
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [userId, setUserId] = useState("");
 
@@ -24,7 +25,7 @@ function App() {
   return (
     <div>
       {/* <div /> */}
-      <Router history={history}>
+      <BrowserRouter history={history}>
         <div>
         <Header userId={userId} setUserId={setUserId} />
        
@@ -37,7 +38,7 @@ function App() {
           <Route path="/" exact component={Homepage} />
        
         </div>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

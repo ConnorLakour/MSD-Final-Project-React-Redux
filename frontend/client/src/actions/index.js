@@ -1,5 +1,6 @@
 import streams from "../apis/streams";
 import history from '../history'
+
 export const signIn = userId => {
   return {
     type: "SIGN_IN",
@@ -21,7 +22,10 @@ export const createStream = formValues =>
 
     disptach({ type: "CREATE_STREAM", payload: response.data });
 
+
     //programmatic naviagation
+    //would be best to redirect here instead of EditStream and CreateStream
+    //but <Router> gives me a blank page refresh
     history.push(`/stream/show/${userId}`);
     
 
@@ -30,7 +34,7 @@ export const createStream = formValues =>
 export const fetchStream = id => async disptach => {
   const response = await streams.get(`/stream/display/${id}`);
 
-  disptach({ type: "FETCH_STREAM", payload: response.data });
+  disptach({ type: "FETCH_STREAM", payload: response.data[0] });
 };
 
 export const fetchStreams = () => async disptach => {
@@ -45,8 +49,12 @@ export const deleteStream = id => async disptach => {
   disptach({ type: "DELETE_STREAM", payload: id });
 };
 
-export const editStream = (id, formValues) => async disptach => {
+export const editStream = (id, formValues) => async (disptach, getState) => {
+  const {userId} = getState().autho
   const response = await streams.put(`/stream/edit/${id}`, formValues);
-
+  console.log(response.data);
   disptach({ type: "EDIT_STREAM", payload: response.data });
+
+  history.push(`/stream/show/${userId}`);
+
 };
