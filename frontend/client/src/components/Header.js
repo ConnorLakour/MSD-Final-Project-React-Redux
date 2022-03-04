@@ -1,22 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import OAuth from "./OAuth";
-import Fboauth from './Fboauth'
+import Fboauth from "./Fboauth";
 const Header = props => {
   return (
     <div className="ui secondary pointing menu">
-      <Link className="item" to="/">
+      <Link to="/" className="item">
         Dope Streams
       </Link>
-      <Link className="item" to={"/stream/create"}>Create Stream</Link>
-      <br/>
-      <br/>
-      <Link className="item" to={"/stream/show"}>Show All Stream</Link>
+      <Link to="/stream/create" className="item">
+        Create Stream
+      </Link>
+      <br />
+      <br />
+      <Link to="/stream/show" className="item">
+        Show All Stream
+      </Link>
       <div className="right menu">
         {/* <button>Streams</button>  */}
         <OAuth
-          setIsSignedIn={props.setIsSignedIn}
-          isSignedIn={props.isSignedIn}
+          // setIsSignedIn={props.setIsSignedIn}
+          // isSignedIn={props.isSignedIn}
           userId={props.userId}
           setUserId={props.setUserId}
         />
