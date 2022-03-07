@@ -28,8 +28,8 @@ export default function Favorite(props) {
 
      //parameter for publishing message
      const params = {
-      Message: "Your stream has been favorited",
-      Subject: "Message sent to you",
+      Message: "Someone has made your video their favorite.",
+      Subject: "Your video has been favorited!",
       TopicArn: "arn:aws:sns:us-east-1:385315034184:MSDProject"
   };
   
