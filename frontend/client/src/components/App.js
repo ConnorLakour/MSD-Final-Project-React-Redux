@@ -1,4 +1,4 @@
-import { Router, Route } from "react-router-dom";
+import { Router, Route, BrowserRouter } from 'react-router-dom';
 import React, { useState } from "react";
 import { createBrowserHistory } from "history";
 
@@ -13,7 +13,7 @@ import ShowStreamDetail from "./ShowStreamDetail";
 import Header from "./Header";
 // import history from '../history'
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -24,7 +24,9 @@ function App() {
   return (
     <div>
       {/* <div /> */}
-      <Router history={history}>
+      <BrowserRouter 
+      // history={history}
+      >
         <div>
         <Header userId={userId} setUserId={setUserId} />
        
@@ -37,7 +39,7 @@ function App() {
           <Route path="/" exact component={Homepage} />
        
         </div>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }
