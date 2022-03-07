@@ -8,7 +8,7 @@ import { deleteStream, fetchStream } from "../actions";
 const DeleteStream = props => {
   useEffect(() => {
     props.fetchStream(props.match.params.id);
-  }, []);
+  });
 
   const renderContent = () => {
     if (!props.stream) {
