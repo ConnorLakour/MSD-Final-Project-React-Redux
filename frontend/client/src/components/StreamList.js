@@ -12,11 +12,6 @@ class StreamList extends React.Component {
     this.props.fetchStreams();
   }
 
-  async deleteStream(value) {
-    console.log("deleting");
-    await axios.delete("http://localhost:3001/stream/delete/" + value);
-    this.setState({ refresh: true });
-  }
 
   renderList() {
     return this.props.streams.map(stream => {
@@ -42,7 +37,6 @@ class StreamList extends React.Component {
                   Edit
                 </Link>
                 <Link
-                  onClick={() => this.deleteStream(stream.id)}
                   to={`/stream/delete/${stream.id}`}
                   className="ui negative button"
                 >

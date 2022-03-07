@@ -13,10 +13,9 @@ import ShowStreamDetail from "./ShowStreamDetail";
 import Header from "./Header";
 // import history from '../history'
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 
 function App() {
-  console.log(history)
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [userId, setUserId] = useState("");
 
@@ -25,7 +24,9 @@ function App() {
   return (
     <div>
       {/* <div /> */}
-      <BrowserRouter history={history}>
+      <BrowserRouter 
+      // history={history}
+      >
         <div>
         <Header userId={userId} setUserId={setUserId} />
        

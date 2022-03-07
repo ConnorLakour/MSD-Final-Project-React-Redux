@@ -1,5 +1,5 @@
 import streams from "../apis/streams";
-import history from '../history'
+import history from "../history";
 
 export const signIn = userId => {
   return {
@@ -17,18 +17,18 @@ export const createStream = formValues =>
   //^using thunk, so return an arrow fcn
   //^append userId to object
   async (disptach, getState) => {
-    const {userId} = getState().autho
-    const response = await streams.post("/stream/create", {...formValues, userId});
+    const { userId } = getState().autho;
+    const response = await streams.post("/stream/create", {
+      ...formValues,
+      userId
+    });
 
     disptach({ type: "CREATE_STREAM", payload: response.data });
-
 
     //programmatic naviagation
     //would be best to redirect here instead of EditStream and CreateStream
     //but <Router> gives me a blank page refresh
-    history.push(`/stream/show/${userId}`);
-    
-
+    // history.push(`/stream/show/${userId}`);
   };
 
 export const fetchStream = id => async disptach => {
@@ -50,11 +50,10 @@ export const deleteStream = id => async disptach => {
 };
 
 export const editStream = (id, formValues) => async (disptach, getState) => {
-  const {userId} = getState().autho
+  const { userId } = getState().autho;
   const response = await streams.put(`/stream/edit/${id}`, formValues);
   console.log(response.data);
   disptach({ type: "EDIT_STREAM", payload: response.data });
 
-  history.push(`/stream/show/${userId}`);
-
+  // history.push(`/stream/show/${userId}`);
 };

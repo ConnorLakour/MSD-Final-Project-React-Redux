@@ -1,29 +1,35 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import Modal from "./Modal";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { deleteStream, fetchStream } from "../actions";
 
 const DeleteStream = props => {
-
-  const [redirect, setRedirect] = useState(false);
-
   useEffect(() => {
-    console.log(this.state.userId)
-    setRedirect(true);
-    // console.log("here")
-    // (async () => {
-    //   await axios.delete(
-    //     "http://localhost:3001/stream/delete/" + props.match.params.id
-    //     );
-    //   })();
+    props.fetchStream(props.match.params.id);
   }, []);
 
+  const renderContent = () => {
+    if (!props.stream) {
+      return `Are you sure you want to delete stream ?`;
+    }
+    return `Are you sure you want to delete stream ${props.stream.title} ?`;
+  };
 
   return (
-    
-    <div>
-      {redirect ? <Redirect to={`/stream/show/${this.state.userId}`} /> : null}
-    </div>
+    <Modal
+      deleteStream={props.deleteStream}
+      streamId={props.match.params.id}
+      streamInfo={renderContent()}
+    />
   );
 };
 
-export default DeleteStream;
+const mapStateToProps = (state, ownProps) => {
+  return { stream: state.streams[ownProps.match.params.id] };
+};
+
+export default connect(mapStateToProps, { deleteStream, fetchStream })(
+  DeleteStream
+);
