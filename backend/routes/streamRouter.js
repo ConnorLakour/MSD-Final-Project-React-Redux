@@ -6,7 +6,9 @@ require("mongoose");
 
 //^GET all
 router.get("/show", async function(req, res, next) {
-  const streams = await StreamModel.find({});
+  const limit = req.query.limit
+  const skip = req.query.skip
+  const streams = await StreamModel.find({}).skip(Number(skip)).limit(Number(limit));
   res.status(200).send(streams);
 });
 

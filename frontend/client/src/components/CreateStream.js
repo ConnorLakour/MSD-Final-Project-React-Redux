@@ -67,7 +67,7 @@ class CreateStream extends React.Component {
     obj.userId = this.props.currentUserId;
     this.props.createStream(obj);
     this.setState({ ...this.state, redirect: true, email: values.email });
-    //  this.subscribeToSns();
+     this.subscribeToSns();
   }
 }
 

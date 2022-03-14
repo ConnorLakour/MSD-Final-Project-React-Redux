@@ -15,7 +15,7 @@ const snsClient = new SNSClient({ region: 'us-east-1' , credentials: credential}
 
 
 //when favorite button is clicked, a message is sent to the subscriber
-export default function Favorite(props) {
+ function Favorite(props) {
   const [email, setEmail] = useState('')
 
   const sendSns = async ()  =>{
@@ -52,8 +52,8 @@ export default function Favorite(props) {
      setEmail(stream.data[0].email)
    
     })()
-console.log(process.env.ACCESS_KEY_ID)
-  //  sendSns()
+// console.log(process.env.ACCESS_KEY_ID)
+   sendSns()
  },[])
   return (
     <div>
@@ -62,3 +62,6 @@ console.log(process.env.ACCESS_KEY_ID)
     </div>
   )
 }
+
+
+export default Favorite;
