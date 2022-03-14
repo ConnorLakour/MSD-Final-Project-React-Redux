@@ -16,7 +16,7 @@ import Header from "./Header";
 // const history = createBrowserHistory();
 
 function App() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  // const [isSignedIn, setIsSignedIn] = useState(false);
   const [userId, setUserId] = useState("");
 
   console.log(userId);

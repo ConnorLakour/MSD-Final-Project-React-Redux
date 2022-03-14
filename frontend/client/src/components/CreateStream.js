@@ -35,11 +35,6 @@ class CreateStream extends React.Component {
     }
   }
 
-  componentDidMount() {
-    //get userId and add it to the redirect url
-    // console.log(this.props.match.params)
-    // this.setState({ userId: this.props.match.params.userId });
-  }
 
   render() {
     return (

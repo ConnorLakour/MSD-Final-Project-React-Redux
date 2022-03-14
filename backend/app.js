@@ -19,11 +19,11 @@ app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
 app.set('view engine', 'pug')
 app.get('/', function (req, res) {
   res.render('index', { title: 'Dope Stream Server', message: 'Hello there!' })
 })
+
 
 app.use(logger('dev'));
 app.use(express.json());
